@@ -1,0 +1,78 @@
+body {
+	height: 1000px;
+	margin: 0;
+	padding: 0;
+    overflow-x: hidden;
+}
+
+:root {
+	--color-primary: #008001;
+}
+
+
+header {
+	height: 20vh;
+}
+
+header img {
+	width: 440px;
+}
+
+.nav-item {
+	margin-inline: 20px;
+}
+
+.nav-link {
+	color: rgb(243, 241, 241) !important;
+}
+
+.nav-item:hover {
+	background-color: rgb(224, 243, 223);
+	border-radius: 5px;
+}
+
+.nav-item:hover .nav-link {
+	color: rgb(44, 39, 39) !important;
+}
+
+nav {
+	height: 50px;
+	background-color: var(--color-primary) !important;
+}
+
+
+
+/* header */
+header img {
+	width: 220px;
+}
+
+.berita-lain img {
+    height: 12rem;
+    object-fit: cover;
+}
+
+/* Ukuran HP keatas */
+@media (max-width: 576px) {
+	.hero {
+		height: 220px;
+		width: 100vw;
+		background-size: cover;
+		background-position: center center;
+		object-fit: cover;
+	}
+}
+
+
+/* Ukuran Dekstop keatas */
+@media (min-width: 992px) {
+	.hero {
+		height: 80vh;
+		width: 100vw;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-attachment: fixed;
+	}
+
+	/* nav */
+}
