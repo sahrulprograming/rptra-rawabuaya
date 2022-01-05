@@ -1,21 +1,38 @@
 body {
-	height: 1000px;
 	margin: 0;
 	padding: 0;
-    overflow-x: hidden;
+	overflow-x: hidden;
 }
 
 :root {
 	--color-primary: #008001;
+	--color-dark: #000000;
+	--color-white: #ffffff;
+	--color-instagram: #D83F8B !important;
+	--color-semi-dark: rgb(44, 39, 39);
 }
 
+.text-instagram {
+	color: var(--color-instagram) !important;
+}
 
+.link-instagram {
+	color: var(--color-instagram) !important;
+	text-decoration: none !important;
+}
+
+/* header */
 header {
 	height: 20vh;
 }
 
 header img {
-	width: 440px;
+	width: 220px;
+}
+
+#nav-desktop {
+	height: 60px;
+	background-color: var(--color-primary) !important;
 }
 
 .nav-item {
@@ -23,43 +40,153 @@ header img {
 }
 
 .nav-link {
-	color: rgb(243, 241, 241) !important;
+	color: var(--color-white);
 }
 
 .nav-item:hover {
-	background-color: rgb(224, 243, 223);
+	background-color: var(--color-white);
 	border-radius: 5px;
 }
 
 .nav-item:hover .nav-link {
-	color: rgb(44, 39, 39) !important;
+	color: var(--color-semi-dark) !important;
 }
 
-nav {
-	height: 50px;
-	background-color: var(--color-primary) !important;
+.hero .heading {
+	width: 100%;
+	height: 100%;
+	color: rgb(206, 197, 197);
+	background: #00000050;
 }
 
 
+.judul-content {
+	background: var(--color-primary);
+	color: var(--color-white) !important;
+	margin-top: 1.2rem;
+	padding-block: 10px;
+	text-transform: uppercase !important;
+}
 
-/* header */
-header img {
-	width: 220px;
+.berita img {
+	width: 100% !important;
+	height: 25rem !important;
+	object-fit: cover;
 }
 
 .berita-lain img {
-    height: 12rem;
-    object-fit: cover;
+	height: 12rem;
+	object-fit: cover;
 }
 
-/* Ukuran HP keatas */
+.profile-pengurus:hover {
+	transform: scale(1.01);
+}
+
+.profile-pengurus img.foto {
+	height: 160px;
+	object-fit: cover;
+	padding: 10px;
+	border-radius: 30px;
+}
+
+.profile-pengurus img:hover,
+.profile-pengurus h5:hover {
+	cursor: pointer;
+}
+
+.profile-pengurus a {
+	text-decoration: none;
+	color: #D83F8B !important;
+	font-size: 10px;
+}
+
+.profile-pengurus h5 {
+	font-size: 12px;
+}
+
+.profile-pengurus h6 {
+	font-size: 10px;
+}
+
+.logo-navbar {
+	position: absolute;
+	border-radius: 10px;
+	top: 0;
+}
+
+.logo-navbar img {
+	width: 5.5rem;
+}
+
+.hero {
+	height: 320px;
+	width: 100vw;
+	background-size: cover;
+	object-fit: cover;
+	background-position: top center;
+}
+
+.populer h5 {
+	border-bottom: 2px solid #000 !important;
+}
+
+@media (max-width: 991.98px) {
+	#owl-carousel {
+		width: 80vw !important;
+	}
+}
+
+/* Ukuran HP kebawah */
 @media (max-width: 576px) {
 	.hero {
 		height: 220px;
 		width: 100vw;
 		background-size: cover;
-		background-position: center center;
 		object-fit: cover;
+		background-position: top center;
+	}
+
+	#nav-mobile {
+		/* height: 50px !important; */
+		background-color: var(--color-primary) !important;
+	}
+
+	.mobile-nav {
+		margin: 0;
+		padding: 0;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		list-style: none;
+	}
+
+	.mobile-nav .nav-item-mobile {
+		margin: 8px 12px;
+	}
+
+	#home {
+		transform: scale(1.5);
+	}
+
+	.mobile-nav #home .material-icons {
+		background: #ffffff80;
+		border-radius: 50%;
+		padding: 5px;
+	}
+
+	.nav-link-mobile {
+		text-decoration: none;
+		color: var(--color-white);
+		margin: 0 10px;
+	}
+
+	#owl-carousel {
+		width: 80vw !important;
+	}
+
+	.profile-pengurus img.foto {
+		height: 180px;
 	}
 }
 
@@ -74,5 +201,7 @@ header img {
 		background-attachment: fixed;
 	}
 
-	/* nav */
+	#owl-carousel {
+		width: 60vw !important;
+	}
 }

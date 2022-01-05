@@ -1,0 +1,25 @@
+#content {
+    display: grid;
+	grid-template-areas:
+    "main-content"
+    "side-content"
+}
+
+@media (min-width: 992px) {
+    #content {
+        grid-template-columns: 2.5fr 1fr;
+        column-gap: 10px;
+		display: grid;
+		grid-template-areas:
+			"main-content side-content"
+			"main-content side-content"
+	}
+}
+
+.main-content {
+	grid-area: "main-content";
+}
+
+.side-content {
+	grid-area: "side-content";
+}

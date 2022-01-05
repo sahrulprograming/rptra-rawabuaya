@@ -1,175 +1,126 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <!-- Sweet Alert 2 -->
-    <script src="<?= base_url('assets'); ?>/plugin/sweetalert2/dist/sweetalert2.all.min.js"></script>
-    <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugin/sweetalert2/dist/sweetalert2.min.css">
-    <!-- Bootstrap 5 -->
-    <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugin/bootstrap5/css/bootstrap.min.css">
-
-    <!-- CSS RPTRA -->
-    <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/rptra.css">
-</head>
-
-<body>
-    <header class="d-flex justify-content-center align-items-center text-center">
-        <img src="<?= base_url('assets'); ?>/img/icon3.png" alt="header">
-    </header>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg" id="navbar">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" aria-current="page" href="#">HOME</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-bold" href="#">PROFILE</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            POKJA I
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            POKJA II
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            POKJA III
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            POKJA IV
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle fw-bold" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            EKONOMI KREATIF
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <div class="hero " style="background-image: url(<?= base_url('assets/img/hero.jpg'); ?>);">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&display=swap" rel="stylesheet">
+<div class="hero" style="background-image: url(<?= base_url('assets/img/hero.jpg'); ?>);">
+    <div class="heading d-flex align-items-center flex-column justify-content-center">
+        <h1 class="display-1" style="font-family: 'Oswald', sans-serif;">RPTRA CEMPAKA</h1>
+        <h3 class="display-3" style="font-family: poppins;">RAWABUAYA</h3>
     </div>
-    <section id="content" style="position:relative;">
-        <div id="content-isi" class="container">
-            <div class="row row-cols-1 row-cols-lg-2 border border-danger mt-2">
-                <div class="col col-lg-8 shadow rounded mt-3" id="berita -terbaru">
-                    <div class="judul-content bg-success py-2 px-4 rounded">
-                        <h2 class="text-white">berita terbaru</h2>
-                    </div>
-                    <div class="isi px-4 py-2">
-                        <h4 class="fw-bold py-2">Judul Berita</h4>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam voluptate tempora aliquam consequuntur accusamus saepe delectus laborum illum adipisci nostrum sapiente officia repellendus accusantium maxime, nesciunt molestias corrupti soluta provident natus optio quibusdam voluptatem! Pariatur possimus qui hic accusamus ab veniam facilis voluptatum earum obcaecati voluptas, nulla aliquam ea minus labore sint non laborum ipsam libero fugiat. Recusandae pariatur, rerum officia voluptatum obcaecati unde quaerat, inventore assumenda aperiam vero asperiores alias totam, rem laudantium eaque cupiditate saepe. Debitis harum tenetur error consectetur et provident, non vel, voluptatum, accusantium aliquam aliquid cum. Alias incidunt unde consequuntur tenetur quis fugiat obcaecati culpa, perferendis aut dolorum at quaerat ipsa odio doloribus excepturi quo minus officia. Aspernatur voluptatibus illo, iusto aut possimus pariatur in cum consequatur. Provident fugiat quae eaque ullam magni perspiciatis autem illo reiciendis, doloremque distinctio libero hic corrupti repellendus consequatur dolores iure officia architecto consectetur omnis animi voluptatem nulla quis ad. Accusantium numquam dolorum quae eum tenetur quaerat, ipsam quidem officia pariatur amet? Magni explicabo sunt laboriosam, repudiandae facere tempora nostrum assumenda iusto excepturi aliquam temporibus reprehenderit omnis illum odio officiis, cum suscipit illo, corporis placeat dolorem? Temporibus officia vitae dolore voluptate blanditiis quos dolorem, deserunt at vel cumque inventore. Neque.</p>
-                    </div>
-                    <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 border border-warning" id="berita-lain">
-                        <div class="col">
-                            <div class="berita-lain card shadow my-2">
-                                <img src="<?= base_url('assets'); ?>/img/foto rptra cempaka/Monitoring.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="berita-lain card shadow my-2">
-                                <img src="<?= base_url('assets'); ?>/img/foto rptra cempaka/24296370_314313999052537_511373022351386049_n.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="berita-lain card shadow my-2">
-                                <img src="<?= base_url('assets'); ?>/img/foto rptra cempaka/slide1.jpg" class="card-img-top" alt="...">
-                                <div class="card-body">
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col col-lg-4 mt-3 shadow bg-primary" style="height: 1000px;">
-
-                </div>
-            </div>
+</div>
+<section class="container my-3" id="content" style="position:relative;">
+    <div class="main-content shadow rounded my-3" id="berita">
+        <div class="judul-content mt-0 py-2 px-4 rounded">
+            <h2>berita terbaru</h2>
         </div>
-    </section>
+        <div class="berita px-4 py-2">
+            <?php if ($berita_terbaru) : ?>
+                <img src="<?= base_url('assets'); ?>/img/berita/<?= $berita_terbaru[0]['gambar']; ?>" alt="">
+                <div class="judul-berita py-3 row row-cols-1 row-cols-lg-2 justify-content-between align-items-center">
+                    <div class="col">
+                        <h4 class="fw-bold" id="berita-terbaru" style="cursor: pointer;"><?= $berita_terbaru[0]['judul']; ?></h4>
+                    </div>
+                    <div class="col">
+                        <div class="icon d-flex flex-column align-items-end justify-content-center">
+                            <div class="created_by d-flex">
+                                <span><?= $berita_terbaru[0]['nama_pembuat']; ?></span>
+                                <i class="material-icons ms-2">
+                                    person
+                                </i>
+                            </div>
+                            <div class="created_at d-flex">
+                                <span><?= format_tanggal($berita_terbaru[0]['created_at']); ?></span>
+                                <i class="material-icons ms-2">
+                                    event
+                                </i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    $('#berita-terbaru').on('click', function() {
+                        window.location.replace('<?= base_url('lihat/postingan/berita/' . $berita_terbaru[0]['created_at']); ?>')
+                    })
+                </script>
+                <p><?= substr($berita_terbaru[0]['content'], 0, 1000); ?>...</p>
+            <?php else : ?>
+                <div class="text-center">
+                    <h3>Tidak Ada</h3>
+                </div>
+            <?php endif ?>
+        </div>
 
-
-
-
-    <script src="<?= base_url('assets'); ?>/plugin/bootstrap5/js/bootstrap.min.js"></script>
-    <script>
-        window.onscroll = function() {
-            myFunction()
-        };
-        var navbar = document.getElementById("navbar");
-        var sticky = navbar.offsetTop;
-
-        function myFunction() {
-            if (window.pageYOffset >= sticky) {
-                navbar.classList.add("fixed-top")
-            } else {
-                navbar.classList.remove("fixed-top");
-            }
-        }
-    </script>
-</body>
-
-</html>
+        <?php if ($berita) : ?>
+            <div class="row row-cols-1 row-cols-lg-3 row-cols-md-2 mx-2" id="berita-lain">
+                <?php foreach ($berita as $b) : ?>
+                    <div class="col">
+                        <a href="<?= base_url('lihat/postingan/berita/' . $b['created_at']); ?>">
+                            <div class="berita-lain card shadow my-2">
+                                <img src="<?= base_url('assets'); ?>/img/berita/<?= $b['gambar']; ?>" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $b['judul']; ?></h5>
+                                    <p class="card-text"><?= substr($b['content'], 0, 45); ?></p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif ?>
+        <?php if ($pengurus) : ?>
+            <div class="pengurus rounded my-3 position-relative" id="pengurus">
+                <div class="judul-content text-center text-white mt-0 rounded">
+                    <h3>DAFTAR PENGURUS</h3>
+                </div>
+                <div class="d-flex justify-content-center">
+                    <div class="owl-carousel mx-2 mb-2" id="owl-carousel">
+                        <?php foreach ($pengurus as $p) : ?>
+                            <div class=" profile-pengurus card shadow my-2 text-center">
+                                <img src="<?= base_url('assets'); ?>/img/pengurus/<?= $p['foto']; ?>" class="card-img-top foto" alt="pengurus">
+                                <div class="card-body">
+                                    <h5 class="card-title"><?= $p['nama_lengkap']; ?></h5>
+                                    <h6 class="card-title my-0" style="font-family:poppins;"><?= $p['posisi']; ?></h6>
+                                    <div class="d-flex flex-column align-items-center my-1">
+                                        <a href="https://www.instagram.com/<?= $p['instagram']; ?>/" target="_blank">
+                                            <img src="<?= base_url('assets'); ?>/img/icon/instagram.png" style="width:12px !important;">
+                                        </a>
+                                        <a href="https://www.instagram.com/<?= $p['instagram']; ?>/" target="_blank">@<?= $p['instagram']; ?></a>
+                                    </div>
+                                </div>
+                            </div>
+                        <?php endforeach ?>
+                    </div>
+                </div>
+                <script>
+                    var owl = $('.owl-carousel');
+                    if (window.matchMedia("(max-width: 576px)").matches) {
+                        owl.owlCarousel({
+                            items: 2,
+                            loop: true,
+                            margin: 10,
+                            autoplay: true,
+                            autoplayTimeout: 2000,
+                            autoplayHoverPause: true
+                        });
+                    } else if (window.matchMedia("(min-width: 992px)").matches) {
+                        owl.owlCarousel({
+                            items: 6,
+                            loop: true,
+                            margin: 10,
+                            autoplay: false,
+                            autoplayTimeout: 2000,
+                            autoplayHoverPause: true
+                        });
+                    } else {
+                        owl.owlCarousel({
+                            items: 4,
+                            loop: true,
+                            margin: 10,
+                            autoplay: true,
+                            autoplayTimeout: 2000,
+                            autoplayHoverPause: true
+                        });
+                    }
+                </script>
+            </div>
+        <?php endif ?>
+    </div>
+    <?php $this->load->view('layouts/default/side-content'); ?>
+</section>

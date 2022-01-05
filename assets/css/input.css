@@ -1,0 +1,12 @@
+#formFile {
+	border: 1px solid #ccc;
+}
+
+.ck-rounded-corners .ck.ck-editor__main>.ck-editor__editable, .ck.ck-editor__main>.ck-editor__editable.ck-rounded-corners{
+    color: rgb(31, 34, 31) !important;
+}
+
+.ck.ck-editor__editable>.ck-placeholder::before {
+	color: rgb(78, 74, 74);
+	font-family: Georgia;
+}
