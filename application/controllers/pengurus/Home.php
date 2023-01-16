@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+ini_set('date.timezone', 'Asia/Jakarta');
 
 class Home extends CI_Controller
 {
@@ -29,23 +30,43 @@ class Home extends CI_Controller
         $this->load->view('pengurus/absen');
         $this->load->view('layouts/dashboard/footer');
     }
-    public function absen()
+    public function absen($status, $tanggal_absen = null)
     {
         $foto = $this->M_rptra->upload_foto('foto', 'bukti_absen');
         if (!$foto) {
             $this->rptra->notif_gagal('Wajib upload foto selfie');
             redirect('pengurus/home');
         }
-        $data = [
-            'ID_user' => $this->ID_user,
-            'foto' => $foto,
-            'status' => 'hadir',
-            'created_at' => time()
-        ];
-        $_POST += $data;
-        $this->db->insert('absensi', $_POST);
-        if ($this->db->affected_rows() > 0) {
-            $this->rptra->notif_berhasil('Anda sudah absen');
+        if ($status == 'masuk') {
+            $this->db->where('ID_user', $this->ID_user);
+            $this->db->where('DATE_FORMAT(FROM_UNIXTIME(created_at), \'%Y-%m-%d\') =', date('Y-m-d'));
+            $sudah_absen = $this->db->get('absensi')->row_array();
+            if ($sudah_absen) {
+                $this->rptra->notif_gagal('Anda Sudah Melakukan Absen');
+                redirect('pengurus/home');
+            }
+            $data = [
+                'ID_user' => $this->ID_user,
+                'foto' => $foto,
+                'status' => 'hadir',
+                'created_at' => time()
+            ];
+            $_POST += $data;
+            $this->db->insert('absensi', $_POST);
+            if ($this->db->affected_rows() > 0) {
+                $this->rptra->notif_berhasil('Anda sudah absen');
+            }
+        } elseif ($tanggal_absen && $status == 'pulang') {
+            $data = [
+                'jam_pulang' => time(),
+                'foto' => $foto
+            ];
+            $this->db->update('absensi', $data, ['created_at' => $tanggal_absen]);
+            if ($this->db->affected_rows() > 0) {
+                $this->rptra->notif_berhasil('Anda sudah pulang');
+            }
+        } else {
+            $this->rptra->notif_gagal('Ada yang salah!');
         }
         redirect('pengurus/home');
     }

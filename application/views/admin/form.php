@@ -25,7 +25,7 @@
                     <?php endif ?>
                 <?php elseif ($input[$ke] == 'textarea') : ?>
                     <div class="mb-3">
-                        <textarea name="<?= $name[$ke]; ?>" id="editor" placeholder="Masukan content berita di sini"><?= isset($value) ? $value[$name[$ke]] : set_value($name[$ke]); ?></textarea>
+                        <textarea name="<?= $name[$ke]; ?>" id="editor" placeholder="<?= $placeholder[$ke]; ?>"><?= isset($value) ? $value[$name[$ke]] : set_value($name[$ke]); ?></textarea>
                         <?= form_error($name[$ke], '<small class="text-danger">', '</small>'); ?>
                     </div>
                 <?php elseif ($input[$ke] == 'option') : ?>
@@ -33,7 +33,7 @@
                         <label for="<?= $name[$ke]; ?>" class="ms-0"><?= $field; ?></label>
                         <select class="form-control" id="<?= $name[$ke]; ?>" name="<?= $name[$ke]; ?>">
                             <?php if ($tb_option[$o] != null) : ?>
-                                <option value="<?= isset($value) ? $value[$name[$ke]] : set_value($name[$ke]); ?>"><?= isset($value) ? $this->CRUD->getTableByID($tb_option[$o], [$valueText[$o][0] => $value[$name[$ke]]], $valueText[$o][1]) : (set_value($name[$ke]) ? set_value($name[$ke]) : 'pilih'); ?></option>
+                                <option value="<?= isset($value) ? $value[$name[$ke]] : set_value($name[$ke]); ?>"><?= isset($value) ? $this->CRUD->getTableByID($tb_option[$o], [$valueText[$o][0] => $value[$name[$ke]]], $valueText[$o][1]) : (set_value($name[$ke]) ? $this->CRUD->getTableByID($tb_option[$o], [$valueText[$o][0] => set_value($name[$ke])], $valueText[$o][1]) : 'pilih'); ?></option>
                             <?php else : ?>
                                 <option value="<?= isset($value) ? $value[$name[$ke]] : set_value($name[$ke]); ?>"><?= isset($value) ? $value[$name[$ke]] : (set_value($name[$ke]) ? set_value($name[$ke]) : 'pilih'); ?></option>
                             <?php endif ?>
@@ -54,63 +54,142 @@
     </div>
 </div>
 <script>
-    ClassicEditor
-        .create(document.querySelector('#editor'), {
-            ckfinder: {
-                uploadUrl: '<?= base_url('assets/plugin'); ?>/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
-            },
-            toolbar: {
-                items: ['ckfinder', '|', 'heading', '|',
-                    'bold', 'italic', 'Underline', 'link', 'bulletedlist', 'numberedlist', 'blockQuote', 'outdent', 'indent', '|',
-                    'insertTable', 'mediaEmbed', '|', 'undo', 'redo'
-                ]
-            },
-            heading: {
-                options: [{
-                        model: 'paragraph',
-                        title: 'Paragraph',
-                        class: 'ck-heading_paragraph'
-                    },
-                    {
-                        model: 'heading1',
-                        view: 'h1',
-                        title: 'Heading 1',
-                        class: 'ck-heading_heading1'
-                    },
-                    {
-                        model: 'heading2',
-                        view: 'h2',
-                        title: 'Heading 2',
-                        class: 'ck-heading_heading2'
-                    },
-                    {
-                        model: 'heading3',
-                        view: 'h3',
-                        title: 'Heading 3',
-                        class: 'ck-heading_heading3'
-                    },
-                    {
-                        model: 'heading4',
-                        view: 'h4',
-                        title: 'Heading 4',
-                        class: 'ck-heading_heading4'
-                    },
-                    {
-                        model: 'heading5',
-                        view: 'h5',
-                        title: 'Heading 5',
-                        class: 'ck-heading_heading5'
-                    },
-                    {
-                        model: 'heading6',
-                        view: 'h6',
-                        title: 'Heading 6',
-                        class: 'ck-heading_heading6'
-                    },
-                ]
-            }
-        })
-        .catch(error => {
-            console.error(error);
-        });
+    <?php if (current_url() == base_url('admin/tambah/master/rptra')) : ?>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                ckfinder: {
+                    uploadUrl: '<?= base_url('assets/plugin'); ?>/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+                },
+                toolbar: {
+                    viewportTopOffset: 60,
+                    items: ['heading', '|',
+                        'bold', 'italic', 'Underline', 'link', '|', 'undo', 'redo'
+                    ]
+                },
+                heading: {
+                    options: [{
+                            model: 'paragraph',
+                            title: 'Paragraph',
+                            class: 'ck-heading_paragraph'
+                        },
+                        {
+                            model: 'heading1',
+                            view: 'h1',
+                            title: 'Heading 1',
+                            class: 'ck-heading_heading1'
+                        },
+                        {
+                            model: 'heading2',
+                            view: 'h2',
+                            title: 'Heading 2',
+                            class: 'ck-heading_heading2'
+                        },
+                        {
+                            model: 'heading3',
+                            view: 'h3',
+                            title: 'Heading 3',
+                            class: 'ck-heading_heading3'
+                        },
+                        {
+                            model: 'heading4',
+                            view: 'h4',
+                            title: 'Heading 4',
+                            class: 'ck-heading_heading4'
+                        },
+                        {
+                            model: 'heading5',
+                            view: 'h5',
+                            title: 'Heading 5',
+                            class: 'ck-heading_heading5'
+                        },
+                        {
+                            model: 'heading6',
+                            view: 'h6',
+                            title: 'Heading 6',
+                            class: 'ck-heading_heading6'
+                        },
+                    ]
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    <?php else : ?>
+        ClassicEditor
+            .create(document.querySelector('#editor'), {
+                ckfinder: {
+                    uploadUrl: '<?= base_url('assets/plugin'); ?>/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files&responseType=json',
+                },
+                toolbar: {
+                    viewportTopOffset: 60,
+                    items: ['ckfinder', '|', 'heading', '|',
+                        'bold', 'italic', 'Underline', 'link', 'bulletedlist', 'numberedlist', 'blockQuote', 'outdent', 'indent', '|',
+                        'insertTable', 'mediaEmbed', '|', 'undo', 'redo'
+                    ]
+                },
+                heading: {
+                    options: [{
+                            model: 'paragraph',
+                            title: 'Paragraph',
+                            class: 'ck-heading_paragraph'
+                        },
+                        {
+                            model: 'heading1',
+                            view: 'h1',
+                            title: 'Heading 1',
+                            class: 'ck-heading_heading1'
+                        },
+                        {
+                            model: 'heading2',
+                            view: 'h2',
+                            title: 'Heading 2',
+                            class: 'ck-heading_heading2'
+                        },
+                        {
+                            model: 'heading3',
+                            view: 'h3',
+                            title: 'Heading 3',
+                            class: 'ck-heading_heading3'
+                        },
+                        {
+                            model: 'heading4',
+                            view: 'h4',
+                            title: 'Heading 4',
+                            class: 'ck-heading_heading4'
+                        },
+                        {
+                            model: 'heading5',
+                            view: 'h5',
+                            title: 'Heading 5',
+                            class: 'ck-heading_heading5'
+                        },
+                        {
+                            model: 'heading6',
+                            view: 'h6',
+                            title: 'Heading 6',
+                            class: 'ck-heading_heading6'
+                        },
+                    ]
+                }
+            })
+            .catch(error => {
+                console.error(error);
+            });
+    <?php endif ?>
+</script>
+
+<script>
+    window.onscroll = function() {
+        myFunction()
+    };
+    var toolbar = document.getElementsByClassName("ck-toolbar__items");
+    var sticky = toolbar.offsetTop;
+
+    function myFunction() {
+        if (window.pageYOffset >= sticky) {
+            toolbar.classList.add("fixed-top")
+        } else {
+            toolbar.classList.remove("fixed-top");
+        }
+    }
 </script>

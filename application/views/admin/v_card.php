@@ -8,12 +8,12 @@
             <div class="col mb-3">
                 <div class="card" id="<?= $d[$card['ID']]; ?>">
                     <div class="card-body p-2 position-relative">
-                        <a href="<?= base_url('lihat/postingan/' . $folder . '/' . $d[$card['ID']]); ?>">
+                        <a href="<?= base_url($folder . '/' . $d[$card['ID']]); ?>">
                             <img src="/assets/img/<?= $folder; ?>/<?= $d[$card['gambar']]; ?>" style="width:100%;height:220px;object-fit:cover;">
                             <div class="judul position-absolute px-2 text-center text-white" style="bottom:0;left: 0;width: 100%;background: #00000080;">
                                 <h4 class="text-white"><?= $d[$card['judul']]; ?></h4>
                                 <div class="deskripsi-singkat-<?= $d[$card['ID']]; ?> d-none">
-                                    <p><?= substr($d[$card['content']], 0, 128); ?>...</p>
+                                    <p><?= strip_tags(substr($d[$card['content']], 0, 128)); ?>...</p>
                                 </div>
                             </div>
                         </a>

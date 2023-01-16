@@ -10,8 +10,8 @@
             </div>
             <div class="col mb-3">
                 <div class="border rounded shadow p-3 text-capitalize">
-                    <h5>Batas Absen</h5>
-                    <p>19.10 WIB</p>
+                    <h5>Mulai Absen</h5>
+                    <p>05.30 WIB</p>
                 </div>
             </div>
             <div class="col mb-3">
@@ -23,10 +23,17 @@
                 <?php else : ?>
                     <?php if ($sudah_absen) : ?>
                         <?php if ($sudah_absen['status'] == 'hadir') : ?>
-                            <div class="border rounded shadow p-3 text-center">
-                                <h5>Anda Sudah Absen</h5>
-                                <button type="button" class="btn btn-success btn-sm">HADIR</button>
-                            </div>
+                            <?php if ($sudah_absen['jam_pulang']) : ?>
+                                <div class="border rounded shadow p-3 text-center">
+                                    <h5>Anda pulang pada jam <?= format_jam($sudah_absen['jam_pulang']); ?></h5>
+                                    <button type="button" class="btn btn-warning btn-sm">SUDAH PULANG</button>
+                                </div>
+                            <?php else : ?>
+                                <div class="border rounded shadow p-3 text-center">
+                                    <h5>Anda masuk pada jam <?= format_jam($sudah_absen['created_at']); ?></h5>
+                                    <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#absen-pulang">ABSEN PULANG</button>
+                                </div>
+                            <?php endif; ?>
                         <?php else : ?>
                             <div class="border rounded shadow p-3 text-center">
                                 <h5>Anda izin hari ini</h5>
@@ -34,20 +41,20 @@
                             </div>
                         <?php endif ?>
                     <?php else : ?>
-                        <?php if (date('H:i') < '06:30') : ?>
+                        <?php if (date('H:i') < '05:30') : ?>
                             <div class="border rounded shadow p-3 text-center">
-                                <h5>Absen di buka pada 06:30</h5>
+                                <h5>Absen di buka pada 05:30</h5>
                                 <button type="button" class="btn btn-warning btn-sm">Belum mulai</button>
                             </div>
-                        <?php elseif (date('H:i') >= '19:10') : ?>
+                        <?php elseif (date('H:i') > '21:00') : ?>
                             <div class="border rounded shadow p-3 text-center">
-                                <h5>Absen telah ditutup pada 19:10 WIB</h5>
-                                <button type="button" class="btn btn-danger btn-sm">Selesai</button>
+                                <h5>Absen di tutup pada 21:00</h5>
+                                <button type="button" class="btn btn-warning btn-sm">Sudah Selesai</button>
                             </div>
                         <?php else : ?>
                             <div class="border rounded shadow p-3 text-center">
                                 <h5>Click Untuk Absen</h5>
-                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#absen">ABSEN</button>
+                                <button type="button" class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#absen">ABSEN MASUK</button>
                                 <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#izin">IZIN</button>
                             </div>
                         <?php endif ?>
@@ -55,7 +62,7 @@
                     <!-- Modal Absen -->
                     <div class="modal fade" id="absen" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                         <div class="modal-dialog" role="document">
-                            <form action="<?= base_url('pengurus/home/absen'); ?>" method="post" enctype="multipart/form-data">
+                            <form action="<?= base_url('pengurus/home/absen/masuk'); ?>" method="post" enctype="multipart/form-data">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title">Bukti Absen</h5>
@@ -69,6 +76,30 @@
                                         </div>
                                         <input type="hidden" name="lat" id="lat">
                                         <input type="hidden" name="lng" id="lng">
+                                    </div>
+                                    <div class="modal-footer justify-content-center">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Kirim</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="absen-pulang" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <form action="<?= base_url('pengurus/home/absen/pulang/' . $sudah_absen['created_at']); ?>" method="post" enctype="multipart/form-data">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Bukti Absen</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="mb-3 input-group input-group-static">
+                                            <label for="foto">FOTO SELFIE</label>
+                                            <input type="file" class="form-control" name="foto" id="foto" accept="image/png, image/jpg, image.jpeg" capture>
+                                            <small id="fileHelpId" class="form-text text-danger">Pilih foto selfie saat ini</small>
+                                        </div>
+                                        <input type="hidden" name="foto_lama" value="<?= $sudah_absen['foto']; ?>">
                                     </div>
                                     <div class="modal-footer justify-content-center">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -68,6 +68,7 @@ class Tambah extends CI_Controller
             $data['input'] = ['normal', 'normal', 'option', 'textarea'];
             $data['type'] = ['file', 'text', 'option', 'textarea'];
             $data['name'] = ['gambar', 'judul', 'ID_kategori', 'content'];
+            $data['placeholder'] = ['', '', '', 'Masukan content ' . $jenis];
             $data['button'] = 'Tambah';
             $this->load->view('layouts/dashboard/head', $data);
             $this->load->view('layouts/dashboard/sidebar/admin');
@@ -92,7 +93,7 @@ class Tambah extends CI_Controller
             $data['button'] = 'Tambah';
         } elseif ($bagian == 'pengurus') {
             // jika bagian adalah pengurus maka gunakan bagian ini
-            $data['options'] = [[['jenis_kelamin' => 'Laki - Laki'], ['jenis_kelamin' => 'Perempuan']], $this->db->get('jabatan')->result_array()];
+            $data['options'] = [[['jenis_kelamin' => 'Laki - Laki'], ['jenis_kelamin' => 'Perempuan']], $this->db->get('jabatan')->result_array(), $this->db->get('rptra')->result_array()];
             $this->form_validation->set_rules('nama_lengkap', 'nama_lengkap', 'required|trim|is_unique[users.nama_lengkap]', [
                 'required'    => 'Nama lengap wajib di isi',
                 'is_unique'    => 'Nama lengkap tersebut sudah ada'
@@ -107,11 +108,26 @@ class Tambah extends CI_Controller
             $this->form_validation->set_rules('jenis_kelamin', 'jenis_kelamin', 'required|trim', [
                 'required'    => 'Jenias kelamin wajib di isi',
             ]);
-            $data['valueText'] = [['jenis_kelamin', 'jenis_kelamin'], ['ID_jbtn', 'posisi'],];
-            $data['label'] = ['Nama Pengurus', 'Jenis Kelamin', 'Email', 'instagram', 'Jabatan', 'Foto'];
-            $data['input'] = ['normal', 'option', 'normal', 'normal', 'option', 'normal'];
-            $data['type'] = ['text', 'option', 'email', 'text', 'option', 'file'];
-            $data['name'] = ['nama_lengkap', 'jenis_kelamin', 'email', 'instagram', 'ID_jbtn', 'foto'];
+            $data['valueText'] = [['jenis_kelamin', 'jenis_kelamin'], ['ID_jbtn', 'posisi'], ['ID_rptra', 'nama']];
+            $data['label'] = ['Nama Pengurus', 'Jenis Kelamin', 'Email', 'instagram', 'Jabatan', 'Asal rptra', 'Foto'];
+            $data['input'] = ['normal', 'option', 'normal', 'normal', 'option', 'option', 'normal'];
+            $data['type'] = ['text', 'option', 'email', 'text', 'option', 'option', 'file'];
+            $data['name'] = ['nama_lengkap', 'jenis_kelamin', 'email', 'instagram', 'ID_jbtn', 'ID_rptra', 'foto'];
+            $data['tb_option'] = [null, 'jabatan', 'rptra'];
+            $data['button'] = 'Tambah';
+        } elseif ($bagian == 'rptra') {
+            $this->form_validation->set_rules('nama', 'nama', 'required|trim|is_unique[rptra.nama]', [
+                'required'    => 'Nama Rptra wajib di isi',
+                'is_unique'    => 'Nama Rptra tersebut sudah ada'
+            ]);
+            $this->form_validation->set_rules('alamat', 'alamat', 'required|trim', [
+                'required'    => 'Alamat wajib di isi',
+            ]);
+            $data['label'] = ['Nama Rptra', 'instagram', 'Alamat', 'Logo'];
+            $data['input'] = ['normal', 'normal', 'textarea', 'normal'];
+            $data['type'] = ['text', 'text', 'text', 'file'];
+            $data['name'] = ['nama', 'instagram', 'alamat', 'logo'];
+            $data['placeholder'] = ['', '', 'Masukan alamat RPTRA', ''];
             $data['button'] = 'Tambah';
         }
         if ($this->form_validation->run() === false) {
@@ -134,6 +150,8 @@ class Tambah extends CI_Controller
                 }
             } else if ($bagian == 'pengurus') {
                 $this->M_create->pengurus();
+            } else if ($bagian == 'rptra') {
+                $this->M_create->rptra();
             }
         }
     }
@@ -147,5 +165,9 @@ class Tambah extends CI_Controller
             $this->rptra->notif_gagal('Event tidak bertambah');
             redirect('admin/lihat/calender');
         }
+    }
+    public function content()
+    {
+        $this->M_create->content();
     }
 }

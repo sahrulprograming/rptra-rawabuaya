@@ -1,6 +1,11 @@
 <?php
 ini_set('date.timezone', 'Asia/Jakarta');
 
+function nama_web()
+{
+    return 'RPTRA RAWA BUAYA';
+}
+
 function cek_active($posisi)
 {
     if (stripos(current_url(), $posisi)) {

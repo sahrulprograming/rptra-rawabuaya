@@ -19,7 +19,7 @@ class Authentication extends CI_Controller
             'required' => 'Password wajib di isi',
         ]);
         if ($this->form_validation->run() === false) {
-            $data['title'] = 'Login | RPTRA CEMPAKA';
+            $data['title'] = 'Login | ' . nama_web();
             $this->load->view('layouts/dashboard/head', $data);
             $this->load->view('auth/login');
             $this->load->view('layouts/dashboard/footer');
@@ -56,6 +56,6 @@ class Authentication extends CI_Controller
     {
         $this->session->sess_destroy();
         $this->rptra->notif_berhasil('Logout Berhasil');
-        redirect('Authentication/login');
+        redirect('login');
     }
 }

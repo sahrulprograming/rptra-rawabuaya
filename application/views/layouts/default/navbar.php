@@ -1,8 +1,8 @@
 <!-- Navbar Versi Dekstop -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark d-none d-sm-block" id="nav-desktop">
     <div class="container-fluid position-relative px-lg-5">
-        <div class="logo-navbar bg-light">
-            <a href="#"><img src="<?= base_url('assets'); ?>/img/icon3.png"></a>
+        <div class="logo-navbar">
+            <a href="#"><img src="<?= base_url('assets'); ?>/img/logo fkp.jpg"></a>
         </div>
         <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -17,9 +17,9 @@
                         PROFILE
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="profile">
-                        <li><a class="dropdown-item" href="#">TUPOKSI</a></li>
-                        <li><a class="dropdown-item" href="#">Visi dan Misi</a></li>
-                        <li><a class="dropdown-item">STRUKTUR ORGANISASI</a></li>
+                        <li><a class="dropdown-item" href="<?= base_url('lihat/tupoksi'); ?>">TUPOKSI</a></li>
+                        <li><a class="dropdown-item" href="<?= base_url('lihat/visi_misi'); ?>">Visi dan Misi</a></li>
+                        <li><a class="dropdown-item" href="<?= base_url('lihat/struktur'); ?>">STRUKTUR ORGANISASI</a></li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
@@ -38,15 +38,15 @@
                         ARTIKLE
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="<?= base_url('lihat/semua_postingan/blog'); ?>">BLOG</a></li>
-                        <li><a class="dropdown-item" href="<?= base_url('lihat/semua_postingan/berita'); ?>">BERITA</a></li>
+                        <li><a class="dropdown-item" href="<?= base_url('blog'); ?>">BLOG</a></li>
+                        <li><a class="dropdown-item" href="<?= base_url('berita'); ?>">BERITA</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
                     <?php if ($this->session->userdata('ID_role')) : ?>
                         <a class="nav-link fw-bold" href="<?= base_url('admin/home'); ?>">DASHBOARD</a>
                     <?php else : ?>
-                        <a class="nav-link fw-bold" href="<?= base_url('Authentication/login'); ?>">LOGIN</a>
+                        <a class="nav-link fw-bold" href="<?= base_url('login'); ?>">LOGIN</a>
                     <?php endif ?>
                 </li>
             </ul>

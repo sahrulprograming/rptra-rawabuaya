@@ -45,7 +45,7 @@ class Rubah extends CI_Controller
     }
     public function postingan($jenis = null, $ID = null)
     {
-        $data['options'] = $this->CRUD->tb_kategori($jenis);
+        $data['options'] = [$this->CRUD->tb_kategori($jenis)];
         $data['tb_option'] = 'kategori';
         $this->form_validation->set_rules('judul', 'judul', 'required|trim', [
             'required'  => 'Judul wajib di isi',
@@ -57,8 +57,8 @@ class Rubah extends CI_Controller
             'required'  => 'Content wajib di isi',
         ]);
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Tambah ' . $jenis;
-            $data['page'] = 'Tambah ' . $jenis;
+            $data['title'] = 'Rubah ' . $jenis;
+            $data['page'] = 'Rubah ' . $jenis;
             $data['label'] = ['gambar', 'judul', 'kategori', 'isi'];
             $data['input'] = ['normal', 'normal', 'option', 'textarea'];
             $data['type'] = ['file', 'text', 'option', 'textarea'];
@@ -68,6 +68,7 @@ class Rubah extends CI_Controller
             $data['tb_option'] = ['kategori'];
             $data['valueText'] = [['ID', 'nama_kategori']];
             $data['folder'] = $jenis;
+            $data['placeholder'] = ['', '', '', 'Masukan content ' . $jenis];
             $this->load->view('layouts/dashboard/head', $data);
             $this->load->view('layouts/dashboard/sidebar/admin');
             $this->load->view('layouts/dashboard/navbar');
@@ -116,6 +117,21 @@ class Rubah extends CI_Controller
             $data['tb_option'] = [null, 'jabatan'];
             $data['value'] = $this->CRUD->ambilSatuData('users', ['ID_user' => $ID]);
             $data['button'] = 'Rubah';
+        } elseif ($bagian == 'rptra') {
+            $this->form_validation->set_rules('nama', 'nama', 'required|trim', [
+                'required'    => 'Nama Rptra wajib di isi',
+            ]);
+            $this->form_validation->set_rules('alamat', 'alamat', 'required|trim', [
+                'required'    => 'Alamat wajib di isi',
+            ]);
+            $data['label'] = ['Nama Rptra', 'instagram', 'Alamat', 'Logo'];
+            $data['input'] = ['normal', 'normal', 'textarea', 'normal'];
+            $data['type'] = ['text', 'text', 'text', 'file'];
+            $data['name'] = ['nama', 'instagram', 'alamat', 'logo'];
+            $data['folder'] = 'logo';
+            $data['value'] = $this->CRUD->ambilSatuData('rptra', ['ID_rptra' => $ID]);
+            $data['placeholder'] = ['', '', 'Masukan alamat RPTRA', ''];
+            $data['button'] = 'Tambah';
         }
         if ($this->form_validation->run() === false) {
             $data['title'] = "Rubah " . $bagian;
@@ -137,6 +153,8 @@ class Rubah extends CI_Controller
                 }
             } else if ($bagian == 'pengurus') {
                 $this->M_update->pengurus($ID);
+            } else if ($bagian == 'rptra') {
+                $this->M_update->rptra($ID);
             }
         }
     }

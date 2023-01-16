@@ -1,4 +1,4 @@
-<section class="container my-3" id="content" style="position:relative;">
+<section class="container my-2" id="content" style="position:relative;">
     <div class="main-content shadow rounded my-3" id="berita">
         <div class="judul-content mt-0 py-2 px-4 rounded">
             <h2>Baca <?= $folder; ?></h2>
@@ -33,6 +33,19 @@
                 })
             </script>
         </div>
+        <div class="container my-3">
+            <a href="<?= $this->session->userdata('kembali'); ?>" class="btn btn-secondary">Kembali</a>
+        </div>
     </div>
     <?php $this->load->view('layouts/default/side-content'); ?>
 </section>
+
+<script>
+    $('meta[property="og:type"]').attr('content', '<?= $folder; ?>')
+    $('meta[property="og:title"]').attr('content', '<?= $data['judul']; ?>')
+    $('meta[property="og:description"]').attr('content', '<?= $folder; ?>')
+    $('meta[property="og:url"]').attr('content', '<?= current_url(); ?>')
+    $('meta[property="og:image"]').attr('content', '<?= base_url('assets'); ?>/img/<?= $folder; ?>/<?= $data['gambar']; ?>')
+    $('meta[property="og:image:secure"]').attr('content', '<?= base_url('assets'); ?>/img/<?= $folder; ?>/<?= $data['gambar']; ?>')
+    $('meta[name="author"]').attr('content', '<?= $data['nama_pembuat']; ?>')
+</script>

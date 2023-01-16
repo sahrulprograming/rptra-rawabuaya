@@ -52,6 +52,8 @@ class Hapus extends CI_Controller
             $this->db->delete('users', ['ID_user' => $ID]);
         } elseif ($bagian == 'jabatan') {
             $this->db->delete('jabatan', ['ID_jbtn' => $ID]);
+        } elseif ($bagian == 'rptra') {
+            $this->db->delete('rptra', ['ID_rptra' => $ID]);
         }
         if ($this->db->affected_rows() > 0) {
             $this->rptra->notif_berhasil($bagian . ' dihapus');

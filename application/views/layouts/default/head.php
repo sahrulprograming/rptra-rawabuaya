@@ -5,6 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type">
+    <meta property="og:title">
+    <meta property="og:description">
+    <meta property="og:url">
+    <meta property="og:image" content="https://designsystemsrepo.com/social-media.png">
+    <meta property="og:image:secure" content="https://designsystemsrepo.com/social-media.png">
+    <meta property="og:image:width" content="1400">
+    <meta property="og:image:height" content="750">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta name="author">
     <title><?= $title; ?></title>
     <!-- Jquery -->
     <script src="<?= base_url('assets'); ?>/plugin/jquery/jquery-3.6.0.min.js"></script>
@@ -19,6 +29,8 @@
     <script src="<?= base_url('assets'); ?>/js/calender/moment.min.js"></script>
     <!-- Bootstrap 5 -->
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/plugin/bootstrap5/css/bootstrap.min.css">
+    <!-- Ckeditor 5 -->
+    <script src="<?= base_url('assets'); ?>/plugin/ckeditor5/ckeditor.js"></script>
     <!-- Material icon -->
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
     <!-- Font Awesome -->
@@ -35,7 +47,7 @@
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/grid.css">
     <link rel="stylesheet" href="<?= base_url('assets'); ?>/css/calender.css">
 
-    <link rel="shortcut icon" href="<?= base_url('assets'); ?>/img/icon2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= base_url('assets'); ?>/img/logo fkp.jpg" type="image/x-icon">
 </head>
 
 <body>
@@ -70,7 +82,7 @@
 
                     </div>
                 </div>
-                <img src="<?= base_url('assets'); ?>/img/icon3.png" alt="header">
+                <img src="<?= base_url('assets'); ?>/img/header.png" alt="header">
             </header>
         </div>
         <!-- Navbar -->

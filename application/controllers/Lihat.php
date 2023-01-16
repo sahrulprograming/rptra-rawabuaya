@@ -13,14 +13,18 @@ class Lihat extends CI_Controller
     }
     public function postingan($jenis, $ID)
     {
-        $data['title'] = 'Baca ' . $jenis;
-        $data['page'] = $jenis;
         $data['data'] = $this->CRUD->tb_postingan($jenis, ['p.created_at' => $ID]);
-        $data['folder'] = $jenis;
-        $this->load->view('layouts/default/head', $data);
-        $this->load->view('layouts/default/navbar');
-        $this->load->view('postingan/baca');
-        $this->load->view('layouts/default/footer');
+        if ($data['data']) {
+            $data['title'] = $data['data']['judul'];
+            $data['page'] = $jenis;
+            $data['folder'] = $jenis;
+            $this->load->view('layouts/default/head', $data);
+            $this->load->view('layouts/default/navbar');
+            $this->load->view('postingan/baca');
+            $this->load->view('layouts/default/footer');
+        } else {
+            redirect($jenis);
+        }
     }
     public function semua_postingan($jenis)
     {
@@ -33,6 +37,7 @@ class Lihat extends CI_Controller
         $this->load->view('layouts/default/navbar');
         $this->load->view('postingan/index');
         $this->load->view('layouts/default/footer');
+        $this->session->set_userdata('kembali', current_url());
     }
     public function profile()
     {
@@ -44,5 +49,27 @@ class Lihat extends CI_Controller
         $this->load->view('layouts/dashboard/navbar');
         $this->load->view('profile');
         $this->load->view('layouts/dashboard/footer');
+    }
+    public function tupoksi()
+    {
+        $data['title'] = 'Tupoksi | ' . nama_web();
+        $data['page'] = 'tupoksi';
+        $data['data'] = $this->db->get_where('content_layouts', ['page' => 'tupoksi'])->row();
+        $this->load->view('layouts/default/head', $data);
+        $this->load->view('layouts/default/navbar');
+        $this->load->view('content');
+        $this->load->view('layouts/default/footer');
+        $this->session->set_userdata('kembali', current_url());
+    }
+    public function visi_misi()
+    {
+        $data['title'] = 'Visi Misi | ' . nama_web();
+        $data['page'] = 'visi misi';
+        $data['data'] = $this->db->get_where('content_layouts', ['page' => 'visi misi'])->row();
+        $this->load->view('layouts/default/head', $data);
+        $this->load->view('layouts/default/navbar');
+        $this->load->view('content');
+        $this->load->view('layouts/default/footer');
+        $this->session->set_userdata('kembali', current_url());
     }
 }

@@ -45,7 +45,10 @@ class M_rptra extends CI_Model
                 }
                 $foto_lama = $this->input->post('foto_lama', TRUE);
                 if ($foto_lama && $foto_lama != 'default-L.png' && $foto_lama != 'default-P.png') {
-                    unlink(FCPATH . "./assets/img/" . $folder . "/$foto_lama");
+                    $cek_file = file_exists(FCPATH . "./assets/img/" . $folder . "/$foto_lama");
+                    if ($cek_file) {
+                        unlink(FCPATH . "./assets/img/" . $folder . "/$foto_lama");
+                    }
                 }
                 return $this->upload->data('file_name');
             }
@@ -111,5 +114,11 @@ class M_rptra extends CI_Model
         $this->db->where('DATE_FORMAT(FROM_UNIXTIME(created_at), \'%d-%m-%Y\') =', date('d-m-Y'));
         $hasil = $this->db->count_all_results('absensi');
         return $hasil;
+    }
+    public function cek_absen($ID_user, $date)
+    {
+        $this->db->where('DATE_FORMAT(FROM_UNIXTIME(created_at), \'%d-%M-%Y\') =', $date);
+        $this->db->where('ID_user', $ID_user);
+        return $this->db->get('absensi')->row();
     }
 }

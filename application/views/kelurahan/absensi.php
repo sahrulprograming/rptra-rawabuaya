@@ -3,45 +3,6 @@
     <div class="my-4 px-4">
         <h3>History Absensi</h3>
     </div>
-    <h5 class="px-4">Laporan Bulanan</h5>
-    <form action="<?= base_url('admin/lihat/laporan_absensi/' . $ID_rptra); ?>" method="POST">
-        <div class="row justify-content-center">
-            <div class="col text-center">
-                <div class="input-group input-group-static mb-4 px-4">
-                    <label for="hari">Bulan</label>
-                    <select class="form-control" id="bulan-export" name="bulan-export">
-                        <option value="<?= set_value('bulan') ? set_value('bulan') : date('m'); ?>"><?= set_value('bulan') ? set_value('bulan') : date('F'); ?></option>
-                        <?php
-                        for ($m = 1; $m <= 12; $m++) :
-                            $bulan = date('F', mktime(0, 0, 0, $m, 1, date('Y')));
-                        ?>
-                            <option value="<?= $m; ?>"><?= $bulan ?></option>
-                        <?php endfor; ?>
-                    </select>
-                </div>
-            </div>
-            <div class="col text-center">
-                <div class="input-group input-group-static mb-4 px-4">
-                    <label for="">Tahun</label>
-                    <select class="form-control" id="tahun-export" name="tahun-export">
-                        <option value="<?= set_value('bulan') ? set_value('bulan') : date('Y'); ?>"><?= set_value('bulan') ? set_value('bulan') : date('Y'); ?></option>
-                        <?php
-                        $tahun = date('Y');
-                        for ($y = 1; $y <= 12; $y++) :
-                        ?>
-                            <option value="<?= $tahun; ?>"><?= $tahun ?></option>
-                        <?php
-                            $tahun--;
-                        endfor; ?>
-                    </select>
-                </div>
-            </div>
-            <div class="col text-center">
-                <button type="submit" class="btn btn-success" id="export-excel">Export</button>
-            </div>
-        </div>
-    </form>
-    <h5 class="px-4">Laporan Harian</h5>
     <div class="row row-cols-1 row-cols-md-3 mt-3">
         <div class="col text-center">
             <div class="input-group input-group-static mb-4 px-4">
@@ -84,7 +45,7 @@
     </div>
     <div class="card px-3">
         <div class="table-responsive">
-            <table class="table align-items-center mb-3 border border-top border-2 shadow" id="absensi">
+            <table class="table align-items-center mb-3 border border-top border-2 shadow">
                 <thead>
                     <tr>
                         <th class="text-uppercase text-center text-dark text-xxs font-weight-bolder opacity-7 ps-2">tanggal</th>
@@ -104,6 +65,7 @@
         </div>
     </div>
 </div>
+
 <script>
     let hari = $('#hari').val();
     let bulan = $('#bulan').val();
@@ -112,7 +74,7 @@
 
     function data_absensi(hari, bulan, tahun) {
         $.ajax({
-            url: '<?php echo base_url('admin/ajax/data_absensi/' . $ID_rptra); ?>',
+            url: '<?php echo base_url('kelurahan/ajax/data_absensi/' . $ID_rptra); ?>',
             data: {
                 hari: hari,
                 bulan: bulan,

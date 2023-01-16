@@ -31,7 +31,7 @@
 	position: relative;
 	padding: 10px 20px;
 	text-align: center;
-	background-color: #008001;
+	background-color: #536353;
 	-webkit-box-shadow: 0 3px 8px -3px rgba(53, 43, 80, 0.65);
 	box-shadow: 0 3px 8px -3px rgba(53, 43, 80, 0.65);
 }
@@ -56,7 +56,7 @@
 	width: 100%;
 	height: calc(100% - 43px);
 	overflow-y: auto;
-	background-color: #008001;
+	background-color: #536353;
 	-webkit-transform: translateY(0);
 	-ms-transform: translateY(0);
 	transform: translateY(0);

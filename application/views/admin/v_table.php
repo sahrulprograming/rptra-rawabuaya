@@ -38,8 +38,14 @@
                                         <?php foreach ($fields as $field) : ?>
                                             <?php if ($field == 'foto') : ?>
                                                 <td class="text-center"><img src="<?= base_url('assets'); ?>/img/pengurus/<?= htmlentities($d[$field]); ?>" alt="" width="50" height="50" style="object-fit:cover;"></td>
+                                            <?php elseif ($field == 'logo') : ?>
+                                                <td class="text-center"><img src="<?= base_url('assets'); ?>/img/logo/<?= htmlentities($d[$field]); ?>" alt="" width="50" height="50" style="object-fit:cover;"></td>
                                             <?php else : ?>
-                                                <td class="text-center"><?= htmlentities($d[$field]); ?></td>
+                                                <?php if ($field == 'alamat') : ?>
+                                                    <td class="text-center"><?= $d[$field]; ?></td>
+                                                <?php else : ?>
+                                                    <td class="text-center"><?= htmlentities($d[$field]); ?></td>
+                                                <?php endif; ?>
                                             <?php endif ?>
                                         <?php endforeach ?>
                                         <td class="text-center">

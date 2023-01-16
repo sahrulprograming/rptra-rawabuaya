@@ -4,8 +4,26 @@ body {
 	overflow-x: hidden;
 }
 
+body::-webkit-scrollbar {
+	width: 10px;
+	/* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+	background: rgb(255, 255, 255);
+	/* color of the tracking area */
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: #536353;
+	/* color of the scroll thumb */
+	border-radius: 20px;
+	/* roundness of the scroll thumb */
+}
+
+
 :root {
-	--color-primary: #008001;
+	--color-primary: #536353;
 	--color-dark: #000000;
 	--color-white: #ffffff;
 	--color-instagram: #D83F8B !important;
@@ -27,7 +45,7 @@ header {
 }
 
 header img {
-	width: 220px;
+	width: 420px;
 }
 
 #nav-desktop {
@@ -111,12 +129,12 @@ header img {
 
 .logo-navbar {
 	position: absolute;
-	border-radius: 10px;
 	top: 0;
 }
 
 .logo-navbar img {
-	width: 5.5rem;
+	width: 2.8rem;
+	border-radius: 50% !important;
 }
 
 .hero {
@@ -124,7 +142,7 @@ header img {
 	width: 100vw;
 	background-size: cover;
 	object-fit: cover;
-	background-position: top center;
+	background-position: 50% 35%;
 }
 
 .populer h5 {

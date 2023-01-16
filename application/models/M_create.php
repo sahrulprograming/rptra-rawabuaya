@@ -30,8 +30,51 @@ class M_create extends CI_Model
             $this->rptra->notif_berhasil("Pengurus telah ditambah");
             redirect('admin/lihat/master/pengurus');
         } else {
-            $this->rptra->notif_berhasil("Pengurus tidak bertambah!");
+            $this->rptra->notif_gagal("Pengurus tidak bertambah!");
             redirect(current_url());
         }
+    }
+    public function rptra()
+    {
+        $logo = $this->M_rptra->upload_foto('logo', 'logo');
+        if (!$logo) {
+            $this->rptra->notif_gagal('Logo rptra wajib di upload');
+            redirect('admin/tambah/master/rptra');
+        }
+        $_POST += ['logo' => $logo];
+        $this->db->insert('rptra', $_POST);
+        if ($this->db->affected_rows() > 0) {
+            $this->rptra->notif_berhasil("Rptra telah ditambah");
+            redirect('admin/lihat/master/rptra');
+        } else {
+            $this->rptra->notif_gagal("Rptra tidak bertambah!");
+            redirect(current_url());
+        }
+    }
+    public function content()
+    {
+        $cek_content = $this->CRUD->ambilSatuData('content_layouts', ['page' => $this->input->post('page')]);
+        $_POST += ['created_at' => time()];
+        if ($cek_content) {
+            $this->db->update('content_layouts', $_POST, ['ID' => $cek_content['ID']]);
+        } else {
+            $this->db->insert('content_layouts', $_POST);
+        }
+        if ($this->db->affected_rows() > 0) {
+            $output = [
+                'success' => true,
+                'icon' => 'success',
+                'title' => 'Selamat',
+                'text' => 'Content berhasil ditambah!'
+            ];
+        } else {
+            $output = [
+                'success' => false,
+                'icon' => 'error',
+                'title' => 'Opss..!',
+                'text' => 'Content gagal ditambah!'
+            ];
+        }
+        echo json_encode($output);
     }
 }

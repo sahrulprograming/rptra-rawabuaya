@@ -14,10 +14,11 @@ class CRUD extends CI_Model
     }
     public function tb_user($bagian, $where = null)
     {
-        $this->db->select('u.ID_user, u.foto, u.nama_lengkap, r.role, j.ID_jbtn, j.posisi, u.instagram, u.email');
+        $this->db->select('u.ID_user, u.foto, u.nama_lengkap, r.role, j.ID_jbtn, j.posisi, u.instagram, rp.nama as nama_rptra, u.email');
         $this->db->from('users u');
         $this->db->join('role r', 'u.ID_role = r.ID_role');
         $this->db->join('jabatan j', 'u.ID_jbtn = j.ID_jbtn');
+        $this->db->join('rptra rp', 'u.ID_rptra = rp.ID_rptra', 'left');
         $this->db->where('r.role', $bagian);
         if ($where) {
             $this->db->where($where);
@@ -58,5 +59,12 @@ class CRUD extends CI_Model
             ];
         }
         echo json_encode($output);
+    }
+    public function tb_rptra($where = null)
+    {
+        if ($where) {
+            $this->db->where($where);
+        }
+        return $this->db->get('rptra')->result();
     }
 }

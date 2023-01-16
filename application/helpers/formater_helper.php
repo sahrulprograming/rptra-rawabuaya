@@ -75,3 +75,34 @@ function format_jenis_kelamin($jenis_kelamin)
         return 'Perempuan';
     }
 }
+
+function jumlah_jam_masuk($jam_masuk, $jam_keluar)
+{
+    $jam_masuk = explode(':', $jam_masuk);
+    $jam_keluar = explode(':', $jam_keluar);
+
+    $jam = $jam_keluar[0] - $jam_masuk[0];
+    $menit = $jam_keluar[1] - $jam_masuk[1];
+    if ($menit >= 0 && $jam >= 0) {
+        if ($jam == 0) {
+            $lama = $menit . " Menit";
+        } else {
+            $lama = $jam . ' Jam ' . $menit . ' Menit';
+        }
+    } elseif ($menit <= 0) {
+        if ($jam <= 0) {
+            $lama = 'belum masuk';
+        } else {
+            $jam -= 1;
+            $menit += 60;
+            if ($jam == 0) {
+                $lama = $menit . ' menit';
+            } else {
+                $lama = $jam . ' Jam ' . $menit . ' Menit';
+            }
+        }
+    } else {
+        $lama = 'belum masuk';
+    }
+    return $lama;
+}

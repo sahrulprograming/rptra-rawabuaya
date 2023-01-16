@@ -9,7 +9,7 @@ class Home extends CI_Controller
         if (!$pengunjung) {
             $this->db->insert('pengunjung', ['ip_address' => get_client_ip(), 'created_at' => time()]);
         }
-        $data['title'] = 'RPTRA CEMPAKA';
+        $data['title'] = nama_web();
         $this->db->order_by('created_at', 'DESC');
         $this->db->limit(1);
         $data['berita_terbaru'] = $this->CRUD->tb_postingan('berita');
@@ -19,11 +19,12 @@ class Home extends CI_Controller
             $this->db->limit(3);
         }
         $data['berita'] = $this->CRUD->tb_postingan('berita');
-        $data['pengurus'] = $this->CRUD->tb_user('pengurus');
+        $data['rptra'] = $this->db->get('rptra')->result_array();
         $this->load->view('layouts/default/head', $data);
         $this->load->view('layouts/default/navbar');
         $this->load->view('v_home');
         $this->load->view('layouts/default/footer');
+        $this->session->set_userdata('kembali', current_url());
     }
     public function coba()
     {

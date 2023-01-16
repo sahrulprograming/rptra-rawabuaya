@@ -8,7 +8,7 @@
                 <div class="col">
                     <div class="berita-lain card shadow my-2">
                         <div class="card-body p-0" id="<?= $d['created_at']; ?>">
-                            <a href="">
+                            <a href="<?= base_url($folder . '/' . $d['created_at']); ?>">
                                 <div class="gambar position-relative text-center text-dark">
                                     <img src="<?= base_url('assets'); ?>/img/<?= $folder; ?>/<?= $d['gambar']; ?>" class="card-img-top">
                                     <div class="judul card-title position-absolute bottom-0 m-0 px-2" style="width: 100%;background: #00000080;">
